@@ -1,0 +1,97 @@
+
+
+#Input an integer array of length six from user. 
+#Count the prime numbers in it?
+
+
+
+include irvine32.inc
+.data
+temp   dword 0
+pcount dword 0
+count  dword 0
+arr    dword 3,3,28,2,6,5
+msg    byte "NUMBER OF PRIME NUMBERS IN ARRAY = ",0
+
+
+
+.code
+
+main proc
+	  
+	  mov ebx,6
+	  mov esi,offset arr
+	  
+	  L1:cmp ebx,0
+	     je next
+	     
+	     mov eax,count
+	     ;call writedec
+	     ;call crlf
+	    
+	     mov eax,[esi]
+	     add esi,4
+	     ;call dumpregs
+	     ;call crlf
+	     
+	     sub ebx,1
+	     
+	     mov ecx,eax
+	     mov temp,eax
+	     ;cmp count,0
+	     ;ja L4
+	     
+	   
+	   l2:cmp ecx,1
+	      je L5
+	      ;call writedec
+	      ;call crlf
+	      mov edx,0
+	      div ecx
+	      ;call writedec
+	      ;call crlf
+	      sub ecx,1
+	      cmp edx,0
+	      
+	      je L3
+	      mov eax,temp
+	      jmp L2
+	    
+	    L3:add count,1
+	       mov eax,count
+	       ;call writedec
+	       ;call crlf
+	       ;mov eax,temp
+	       jmp L2
+	       
+	    L4:add pcount,1
+	       mov eax,pcount
+	       ;call dumpregs
+	       ;call crlf
+	       ;call writedec
+	       ;call crlf
+	       mov eax,temp
+	       mov count,0
+	       jmp l1
+	    L5:
+	       
+	       cmp count,1
+	       je l4
+	       mov count,0
+	       jmp l1
+	    
+	    next:
+	    	 mov edx,offset msg
+	    	 call writestring
+	    	 mov eax,pcount
+	         call writedec
+	         call crlf
+
+
+	    exit 
+	    main endp
+	    end main
+
+
+
+	
